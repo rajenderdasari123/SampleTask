@@ -2,6 +2,7 @@ package com.example.albumsproject
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.albumsproject.constant.AlbumConstant
 import com.example.albumsproject.model.Album
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
@@ -21,7 +22,7 @@ class AlbumDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_albumdetail)
 
         val bundle = intent.extras
-        val str: String = bundle?.get("data").toString()
+        val str: String = bundle?.get(AlbumConstant.LIST_ALBUM).toString()
         val albumData = Gson().fromJson(str, Album::class.java)
         Picasso.get().load(albumData.url).into(img_album)
     }

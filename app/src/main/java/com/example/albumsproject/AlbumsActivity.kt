@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsproject.adapter.AlbumAdapter
+import com.example.albumsproject.constant.AlbumConstant
 import com.example.albumsproject.model.Album
 import com.google.gson.Gson
 
@@ -47,7 +48,7 @@ class AlbumsActivity : AppCompatActivity(), AlbumClickListener {
                 } else {
                     Toast.makeText(
                         this@AlbumsActivity,
-                        "Error in getting the data",
+                        AlbumConstant.ERROR,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -62,14 +63,14 @@ class AlbumsActivity : AppCompatActivity(), AlbumClickListener {
         albumAdapter = AlbumAdapter(this)
         albumList.adapter = albumAdapter
     }
-
+    
     override fun onAlbumItemClick(view: View, positon: Int) {
         when (view.id) {
             R.id.constraintlayout -> {
                 val intent = Intent(this, AlbumDetailActivity::class.java)
                 val bundle = Bundle()
                 val listAsString = Gson().toJson(listData?.get(positon))
-                bundle.putString("data", listAsString)
+                bundle.putString(AlbumConstant.LIST_ALBUM, listAsString)
                 intent.putExtras(bundle);
                 this.startActivity(intent);
             }
