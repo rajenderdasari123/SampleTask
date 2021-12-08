@@ -18,31 +18,34 @@ class AlbumsViewModel(application: Application) : AndroidViewModel(application) 
 
     @Inject
     lateinit var mService: RetroServiceInterface
-    private lateinit var liveDataList: MutableLiveData<Album>
+    private lateinit var liveDataList: MutableLiveData<List<Album>>
 
     init {
         (application as MyApplication).getRetroComponent().inject(this)
-        liveDataList = MutableLiveData()
+        liveDataList = MutableLiveData<List<Album>>()
     }
 
-    fun getLiveDataObserver(): MutableLiveData<Album> {
+    fun getLiveDataObserver(): MutableLiveData<List<Album>> {
         return liveDataList
     }
 
 
     fun makeApicall() {
         viewModelScope.launch(Dispatchers.IO) {
-            val call: Call<Album?> = mService.getDataFromAPI()
-            call.enqueue(object : Callback<Album?> {
-                override fun onResponse(call: Call<Album?>, response: Response<Album?>) {
+            val call: Call<List<Album?>> = mService.getDataFromAPI()
+            call.enqueue(object : Callback<List<Album?>> {
+                override fun onResponse(
+                    call: Call<List<Album?>>,
+                    response: Response<List<Album?>>
+                ) {
                     if (response.isSuccessful) {
-                        liveDataList.postValue(response.body())
+                        liveDataList.postValue(response.body() as List<Album>?)
                     } else {
                         liveDataList.postValue(null)
                     }
                 }
 
-                override fun onFailure(call: Call<Album?>, t: Throwable) {
+                override fun onFailure(call: Call<List<Album?>>, t: Throwable) {
                     liveDataList.postValue(null)
                 }
 
