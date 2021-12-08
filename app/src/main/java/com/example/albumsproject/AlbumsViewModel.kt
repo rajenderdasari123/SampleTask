@@ -1,7 +1,6 @@
 package com.example.albumsproject
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -30,6 +29,9 @@ class AlbumsViewModel(application: Application) : AndroidViewModel(application) 
     }
 
 
+    /**
+     * This method Fetches data from api call and populate to View.
+     */
     fun makeApicall() {
         viewModelScope.launch(Dispatchers.IO) {
             val call: Call<List<Album?>> = mService.getDataFromAPI()

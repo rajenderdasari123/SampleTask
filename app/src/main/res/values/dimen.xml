@@ -6,6 +6,7 @@
     <dimen name="dimen_10dp">10dp</dimen>
     <dimen name="dimen_img_width">100dp</dimen>
     <dimen name="dimen_img_height">100dp</dimen>
+    <dimen name="dimen_500dp">500dp</dimen>
     <dimen name="dimen_header_text_size">18sp</dimen>
     <dimen name="dimen_description_text_size">16sp</dimen>
 </resources>
