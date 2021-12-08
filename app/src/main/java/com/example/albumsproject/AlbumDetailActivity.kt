@@ -9,6 +9,13 @@ import kotlinx.android.synthetic.main.activity_albumdetail.*
 
 class AlbumDetailActivity : AppCompatActivity() {
 
+    /**
+     * Called when the activity is first created. This is where you should do all of your normal
+     * static set up: create views, bind data to lists, etc. This method also provides you with a
+     * Bundle containing the activity's previously frozen state, if there was one.
+     *
+     * @param savedInstanceState-{@link Bundle}.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_albumdetail)

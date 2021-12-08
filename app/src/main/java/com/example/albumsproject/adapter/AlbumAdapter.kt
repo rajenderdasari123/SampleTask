@@ -63,7 +63,7 @@ class AlbumAdapter(private val listener: AlbumClickListener) :
     override fun onBindViewHolder(holder: AlbumAdapter.MyViewHolder, position: Int) {
         holder.bind(albumData?.get(position)!!)
         holder.constraintlayout.setOnClickListener {
-            listener.onAlbumItemClick(holder.ivImage, position)
+            listener.onAlbumItemClick(holder.constraintlayout, position)
             notifyDataSetChanged()
         }
     }
